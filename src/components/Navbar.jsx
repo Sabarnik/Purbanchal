@@ -127,7 +127,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-16 md:h-20">
         {/* Logo */}
-        <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+        <img src="./logo.png" alt="Logo" className="h-10 w-auto" />
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
