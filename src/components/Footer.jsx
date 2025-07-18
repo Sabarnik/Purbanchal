@@ -21,7 +21,7 @@ const Footer = () => {
           <motion.div variants={fadeIn("right", 0.4)}>
             <div className="flex items-center mb-4">
               <img 
-                src="./logo1.png" 
+                src="/purbanchal/logo1.png" 
                 alt="Purbanchal Cement Logo" 
                 className="h-10 brightness-125"
               />
