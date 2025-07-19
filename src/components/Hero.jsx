@@ -111,11 +111,11 @@ const HeroSection = () => {
         ref={elementRef}
         className="transition-all duration-500 ease-out transform hover:scale-105"
       >
-        <h3 className="text-orange-600 text-3xl md:text-4xl font-extrabold">
+        <h3 className="text-orange-600 text-4xl md:text-5xl font-extrabold">
           {count}
           {suffix}
         </h3>
-        <p className="text-sm md:text-base text-gray-700 mt-1">{children}</p>
+        <p className="text-base md:text-lg text-gray-700 mt-1">{children}</p>
       </div>
     );
   };
@@ -145,7 +145,7 @@ const HeroSection = () => {
             onEnded={handleVideoEnd}
             className="w-full h-full object-cover"
           >
-            <source src="hero1-bg.mp4" type="video/mp4" />
+            <source src="hero2-bg.mp4" type="video/mp4" />
             Your browser does not support HTML5 video.
           </video>
           <div
@@ -167,7 +167,7 @@ const HeroSection = () => {
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               color: 'transparent',
-              fontSize: '2.5rem',
+              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
               lineHeight: '1.2',
               fontWeight: 'bold',
               marginBottom: '1rem',
@@ -183,7 +183,7 @@ const HeroSection = () => {
             style={{
               willChange: 'transform, opacity',
               color: 'rgb(245 245 245)',
-              fontSize: '1rem',
+              fontSize: 'clamp(1rem, 2vw, 1.25rem)',
               fontWeight: '500',
               marginBottom: '1.5rem',
               maxWidth: '32rem',
@@ -202,16 +202,17 @@ const HeroSection = () => {
               willChange: 'transform, opacity',
               background: 'linear-gradient(90deg, #f97316 0%, #ea580c 100%)',
               color: 'white',
+              fontSize: '1.125rem',
+              fontWeight: '600',
             }}
           >
             Let's Discuss
           </button>
         </div>
 
-        {/* Cement Bags + Logo - Aligned with max-w-7xl */}
+        {/* Cement Bags + Logo */}
         <div className="absolute bottom-8 md:bottom-16 w-full z-30 pointer-events-none">
           <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-end items-end space-x-4 relative">
-            {/* Logo above cement bags */}
             <div
               className={`
                 absolute -top-90 right-0 z-30
@@ -227,7 +228,6 @@ const HeroSection = () => {
               />
             </div>
 
-            {/* Cement Bags */}
             {[1, 2, 3].map((bagNumber) => (
               <img
                 key={bagNumber}
@@ -247,18 +247,10 @@ const HeroSection = () => {
       {/* Stats Section */}
       <section ref={statsSectionRef} className="relative z-10 -mt-0">
         <div className="mx-auto bg-white rounded-xl shadow-lg py-10 px-6 md:px-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-7xl">
-          <CountUp target={25} suffix="+">
-            Years Excellence
-          </CountUp>
-          <CountUp target={1000} suffix="+">
-            Clients Served
-          </CountUp>
-          <CountUp target={500} suffix="+">
-            Projects Completed
-          </CountUp>
-          <CountUp target={100} suffix="%">
-            Quality Assured
-          </CountUp>
+          <CountUp target={25} suffix="+">Years Excellence</CountUp>
+          <CountUp target={1000} suffix="+">Clients Served</CountUp>
+          <CountUp target={500} suffix="+">Projects Completed</CountUp>
+          <CountUp target={100} suffix="%">Quality Assured</CountUp>
         </div>
       </section>
     </>

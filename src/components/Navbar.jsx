@@ -13,11 +13,11 @@ const DropdownMenu = ({ items, isOpen, onClose }) => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [onClose]);
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>
@@ -27,18 +27,21 @@ const DropdownMenu = ({ items, isOpen, onClose }) => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.2 }}
-          className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100"
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl z-[1001] border border-gray-200 overflow-hidden"
         >
           <div className="py-1">
             {items.map((item, index) => (
-              <a
+              <motion.a
                 key={index}
                 href={item.href}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                initial={{ x: -10 }}
+                animate={{ x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className="block px-5 py-3 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-all duration-200"
               >
                 {item.label}
-              </a>
+              </motion.a>
             ))}
           </div>
         </motion.div>
@@ -53,12 +56,10 @@ const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
-    {
-      href: "#home",
-      label: "Home",
-    },
+    { href: "#home", label: "Home" },
     {
       href: "#about",
       label: "About us",
@@ -101,13 +102,8 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setShowNavbar(false);
-      } else {
-        setShowNavbar(true);
-      }
-
+      setIsScrolled(currentScrollY > 10);
+      setShowNavbar(currentScrollY < lastScrollY || currentScrollY <= 50);
       setLastScrollY(currentScrollY);
     };
 
@@ -121,42 +117,74 @@ const Navbar = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-     className={`fixed top-[32px] left-0 right-0 bg-white z-40 border-b border-gray-200 shadow-sm transition-transform duration-300 ${
-  showNavbar ? "translate-y-0" : "-translate-y-full"
+    className={`fixed top-0 left-0 right-0 z-[1000] transition-transform duration-500 ${
+  showNavbar ? "translate-y-[2rem]" : "-translate-y-full"
+} ${
+  isScrolled
+    ? "bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-md"
+    : "bg-transparent"
 }`}
-    >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-16 md:h-20">
-        {/* Logo */}
-        <img src="/purbanchal/logo.png" alt="Logo" className="h-10 w-auto" />
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+    >
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20 relative">
+        {/* Logo */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
+          <img
+            src="/purbanchal/logo.png"
+            alt="Logo"
+            className="h-12 w-auto cursor-pointer"
+          />
+        </motion.div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-10 h-full">
           {navLinks.map((link, index) => (
-            <div key={index} className="relative">
-              <button
+            <div key={index} className="relative h-full flex items-center">
+              <motion.button
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   if (link.hasDropdown) {
                     toggleDropdown(index);
                   } else {
                     setActiveLink(link.href);
                     setOpenDropdown(null);
-                    window.location.href = link.href;
                   }
                 }}
-                className={`flex items-center text-sm font-medium transition-colors duration-200 ${
+                className={`flex items-center text-lg font-medium transition-all duration-300 ${
                   activeLink === link.href
                     ? "text-blue-600"
-                    : "text-gray-700 hover:text-black"
+                    : isScrolled
+                    ? "text-gray-700 hover:text-black"
+                    : "text-white hover:text-gray-200"
                 }`}
               >
                 {link.label}
-                {link.hasDropdown &&
-                  (openDropdown === index ? (
-                    <HiChevronUp className="ml-1 h-4 w-4 text-gray-600" />
-                  ) : (
-                    <HiChevronDown className="ml-1 h-4 w-4 text-gray-600" />
-                  ))}
-              </button>
+                {link.hasDropdown && (
+                  <motion.div
+                    animate={{ rotate: openDropdown === index ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {openDropdown === index ? (
+                      <HiChevronUp
+                        className={`ml-1 h-5 w-5 ${
+                          isScrolled ? "text-gray-600" : "text-white"
+                        }`}
+                      />
+                    ) : (
+                      <HiChevronDown
+                        className={`ml-1 h-5 w-5 ${
+                          isScrolled ? "text-gray-600" : "text-white"
+                        }`}
+                      />
+                    )}
+                  </motion.div>
+                )}
+              </motion.button>
 
               {link.hasDropdown && (
                 <DropdownMenu
@@ -169,21 +197,44 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* CTA Button */}
-        <a
+        {/* CTA */}
+        <motion.a
           href="#contact"
-          className="hidden md:inline-block bg-orange-500 text-white px-4 py-2 text-sm rounded hover:bg-orange-600 transition"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`hidden md:inline-block px-6 py-3 rounded-lg text-lg font-medium ${
+            isScrolled
+              ? "bg-blue-600 text-white hover:bg-blue-700"
+              : "bg-white text-blue-600 hover:bg-gray-100"
+          } hover:shadow-lg transition-all`}
         >
           Contact Us
-        </a>
+        </motion.a>
 
         {/* Mobile Menu Toggle */}
-        <button
+        <motion.button
           className="md:hidden p-2"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={() => {
+            setIsMenuOpen(!isMenuOpen);
+            setOpenDropdown(null);
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          {isMenuOpen ? <HiX className="h-6 w-6" /> : <HiMenu className="h-6 w-6" />}
-        </button>
+          {isMenuOpen ? (
+            <HiX
+              className={`h-8 w-8 ${
+                isScrolled ? "text-gray-800" : "text-white"
+              }`}
+            />
+          ) : (
+            <HiMenu
+              className={`h-8 w-8 ${
+                isScrolled ? "text-gray-800" : "text-white"
+              }`}
+            />
+          )}
+        </motion.button>
       </div>
 
       {/* Mobile Menu */}
@@ -193,41 +244,50 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className={`md:hidden ${
+              isScrolled ? "bg-white" : "bg-white/90 backdrop-blur-md"
+            } border-t border-gray-200 overflow-hidden shadow-inner`}
           >
             <div className="container mx-auto px-4 space-y-2 py-4">
               {navLinks.map((link, index) => (
-                <div key={index} className="relative">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                >
                   <div className="flex items-center justify-between">
-                    <button
+                    <a
+                      href={link.href}
                       onClick={() => {
-                        if (link.hasDropdown) {
-                          toggleDropdown(index);
-                        } else {
+                        if (!link.hasDropdown) {
                           setActiveLink(link.href);
                           setIsMenuOpen(false);
-                          window.location.href = link.href;
+                          setOpenDropdown(null);
                         }
                       }}
-                      className={`block text-left text-sm font-medium py-2 ${
+                      className={`block text-left text-lg font-medium py-3 px-3 rounded-lg w-full ${
                         activeLink === link.href
                           ? "text-blue-600"
-                          : "text-gray-600 hover:text-black"
+                          : "text-gray-700 hover:bg-gray-100"
                       }`}
                     >
                       {link.label}
-                    </button>
+                    </a>
                     {link.hasDropdown && (
                       <button
                         onClick={() => toggleDropdown(index)}
-                        className="p-2 focus:outline-none"
+                        className="p-2"
                       >
-                        {openDropdown === index ? (
-                          <HiChevronUp className="h-4 w-4 text-gray-600" />
-                        ) : (
-                          <HiChevronDown className="h-4 w-4 text-gray-600" />
-                        )}
+                        <motion.div
+                          animate={{ rotate: openDropdown === index ? 180 : 0 }}
+                        >
+                          {openDropdown === index ? (
+                            <HiChevronUp className="h-5 w-5 text-gray-600" />
+                          ) : (
+                            <HiChevronDown className="h-5 w-5 text-gray-600" />
+                          )}
+                        </motion.div>
                       </button>
                     )}
                   </div>
@@ -237,29 +297,39 @@ const Navbar = () => {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="pl-4"
+                      transition={{ duration: 0.3 }}
+                      className="pl-6 space-y-2 mt-2"
                     >
-                      {link.dropdownItems.map((item, itemIndex) => (
-                        <a
-                          key={itemIndex}
+                      {link.dropdownItems.map((item, i) => (
+                        <motion.a
+                          key={i}
                           href={item.href}
-                          onClick={() => setIsMenuOpen(false)}
-                          className="block py-2 text-sm text-gray-600 hover:text-black"
+                          onClick={() => {
+                            setIsMenuOpen(false);
+                            setOpenDropdown(null);
+                          }}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: i * 0.05 }}
+                          className="block py-2.5 px-4 text-base text-gray-600 hover:bg-gray-100 rounded-lg transition-all"
                         >
                           {item.label}
-                        </a>
+                        </motion.a>
                       ))}
                     </motion.div>
                   )}
-                </div>
+                </motion.div>
               ))}
-              <a
+              <motion.a
                 href="#contact"
-                className="block bg-orange-500 text-white px-6 py-2.5 rounded text-center text-sm font-medium hover:bg-orange-600 transition mt-4"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="block bg-blue-600 text-white px-8 py-3.5 rounded-lg text-center text-lg font-medium hover:shadow-lg transition-all mt-6 mb-4"
               >
                 Contact Us
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         )}

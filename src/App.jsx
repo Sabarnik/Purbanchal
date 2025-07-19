@@ -1,15 +1,20 @@
 import React from "react"; // ✅ Add this
 import "./App.css";
+import WhyChooseUs from "./components/WhyChooseUs";
+import ToolsSection from "./components/ToolsSection";
 import Topbar from "./components/Topbar";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/Hero";
+import Addition from "./components/Additional";
 import Testimonials from "./components/TestimonialsSection";
 import BlogNewsSection from "./components/BlogNewsSection";
 import Footer from "./components/Footer";
 import LegacySection from "./components/LegacySection";
+import ProjectSection from "./components/ProjectSection"; // Import the new ProjectSection component
 import ConstructionCTA from "./components/ConstructionCTA"; // Import the new component 
 import CSRSection from "./components/CSR";
 import AboutSection from "./components/AboutSection"; // Import the new AboutSection component
+import SustainabilitySection from "./components/Sustainability"; // Import the SustainabilitySection component
 function App() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
@@ -19,6 +24,11 @@ function App() {
         <Navbar />
         <HeroSection />
         <AboutSection />
+        <Addition />
+        <ToolsSection />
+        <WhyChooseUs />
+        <SustainabilitySection />
+        <ProjectSection />
         <Testimonials />
         <CSRSection />
         <BlogNewsSection />
