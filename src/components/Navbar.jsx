@@ -117,12 +117,12 @@ const Navbar = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-    className={`fixed top-0 left-0 right-0 z-[1000] transition-transform duration-500 ${
+     className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
   showNavbar ? "translate-y-[2rem]" : "-translate-y-full"
 } ${
   isScrolled
     ? "bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-md"
-    : "bg-transparent"
+    : "bg-white/30 backdrop-blur-sm"
 }`}
 
     >

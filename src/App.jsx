@@ -1,5 +1,6 @@
 import React from "react"; // ✅ Add this
 import "./App.css";
+import ManufacturingProcess from "./components/ManufacturingProcess";
 import WhyChooseUs from "./components/WhyChooseUs";
 import ToolsSection from "./components/ToolsSection";
 import Topbar from "./components/Topbar";
@@ -7,6 +8,7 @@ import Navbar from "./components/Navbar";
 import HeroSection from "./components/Hero";
 import Addition from "./components/Additional";
 import Testimonials from "./components/TestimonialsSection";
+import StrengthLineup from "./components/StrengthLineup";
 import BlogNewsSection from "./components/BlogNewsSection";
 import Footer from "./components/Footer";
 import LegacySection from "./components/LegacySection";
@@ -25,8 +27,10 @@ function App() {
         <HeroSection />
         <AboutSection />
         <Addition />
+        <StrengthLineup />
         <ToolsSection />
         <WhyChooseUs />
+        <ManufacturingProcess />
         <SustainabilitySection />
         <ProjectSection />
         <Testimonials />

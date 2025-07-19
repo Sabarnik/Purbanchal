@@ -32,9 +32,9 @@ const Addition = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Top Section */}
-        <div className="flex flex-col md:flex-row justify-between gap-8 items-start mb-2">
+        <div className="flex flex-col md:flex-row justify-between gap-4 items-start mb-2">
           {/* Left Text */}
-          <div className="md:w-[60%]">
+          <div className="md:w-2/3">
             <p className="text-sm text-orange-500 font-semibold mb-1 flex items-center gap-2">
               <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
               Where Strength Meets Trust
@@ -57,27 +57,26 @@ const Addition = () => {
           </div>
 
           {/* Orange Gradient Divider */}
-          <div className="hidden md:block w-[2px] h-[140px] bg-gradient-to-b from-orange-500 via-orange-400 to-transparent mx-4" />
+          <div className="hidden md:block w-[2px] h-[140px] bg-gradient-to-b from-orange-500 via-orange-400 to-transparent mx-6" />
 
-          {/* Right Buttons Grid */}
-          <div className="md:w-[40%] w-full">
-            <div className="grid grid-cols-2 gap-3">
-              {buttonLabels.map((label, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveButton(index)}
-                  className={`w-full h-[56px] box-border text-center rounded-lg text-base font-medium transition-all duration-200 border-2 whitespace-nowrap
-                  ${
-                    activeButton === index
-                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white border-transparent shadow-md"
-                      : "bg-white border-gray-300 text-blue-900 hover:shadow-md hover:border-orange-300"
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Sleek Top Right Buttons */}
+         <div className="md:w-1/3 grid grid-cols-2 gap-3">
+  {buttonLabels.map((label, index) => (
+    <button
+      key={index}
+      onClick={() => setActiveButton(index)}
+      className={`min-w-[240px] h-[56px] box-border text-center rounded-lg text-base font-medium transition-all duration-200 border-2 whitespace-nowrap
+      ${
+        activeButton === index
+          ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white border-transparent shadow-md"
+          : "bg-white border-gray-300 text-blue-900 hover:shadow-md hover:border-orange-300"
+      }`}
+    >
+      {label}
+    </button>
+  ))}
+</div>
+
         </div>
       </div>
 
