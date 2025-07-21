@@ -30,9 +30,9 @@ const Addition = () => {
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Top Section */}
-        <div className="flex flex-col md:flex-row justify-between gap-4 items-start mb-2">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-2">
           {/* Left Text */}
           <div className="md:w-2/3">
             <p className="text-sm text-orange-500 font-semibold mb-1 flex items-center gap-2">
@@ -40,7 +40,7 @@ const Addition = () => {
               Where Strength Meets Trust
               <span className="w-2 h-0.5 bg-orange-500 inline-block"></span>
             </p>
-            <h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-1">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#3366BB] mb-1">
               Purbanchal Cement Limited
             </h1>
             <h2 className="text-lg text-orange-600 font-semibold mb-2">
@@ -59,30 +59,29 @@ const Addition = () => {
           {/* Orange Gradient Divider */}
           <div className="hidden md:block w-[2px] h-[140px] bg-gradient-to-b from-orange-500 via-orange-400 to-transparent mx-6" />
 
-          {/* Sleek Top Right Buttons */}
-         <div className="md:w-1/3 grid grid-cols-2 gap-3">
-  {buttonLabels.map((label, index) => (
-    <button
-      key={index}
-      onClick={() => setActiveButton(index)}
-      className={`min-w-[240px] h-[56px] box-border text-center rounded-lg text-base font-medium transition-all duration-200 border-2 whitespace-nowrap
-      ${
-        activeButton === index
-          ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white border-transparent shadow-md"
-          : "bg-white border-gray-300 text-blue-900 hover:shadow-md hover:border-orange-300"
-      }`}
-    >
-      {label}
-    </button>
-  ))}
-</div>
-
+          {/* Top Right Buttons - Adjusted layout */}
+          <div className="md:w-1/3 w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {buttonLabels.map((label, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveButton(index)}
+                className={`w-full h-[56px] box-border text-center rounded-lg text-base font-medium transition-all duration-200 border-2 whitespace-nowrap
+                ${
+                  activeButton === index
+                    ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white border-transparent shadow-md"
+                    : "bg-white border-gray-300 text-[#3366BB] hover:shadow-md hover:border-orange-300"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Expanded Gradient Section */}
       <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-gradient-to-b from-white to-[#002e6d] pt-2 pb-24">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-stretch gap-4">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-stretch gap-4">
           {/* Video Card */}
           <div className="lg:w-[70%] w-full relative rounded-xl overflow-hidden shadow-2xl aspect-[16/9] lg:h-[360px] clip-left transition-all duration-300 hover:shadow-2xl">
             <img
@@ -91,7 +90,7 @@ const Addition = () => {
               className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/20 flex items-center justify-center transition-all duration-300 hover:bg-black/30">
-              <button className="bg-white/90 hover:bg-white text-blue-800 p-3 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg">
+              <button className="bg-white/90 hover:bg-white text-[#3366BB] p-3 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg">
                 <FaPlay className="h-5 w-5" />
               </button>
             </div>

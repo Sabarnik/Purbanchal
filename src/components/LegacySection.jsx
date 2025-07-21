@@ -8,9 +8,11 @@ const LegacySection = () => {
       variants={fadeIn("up", 0.2)}
       initial="hidden"
       whileInView="show"
-      className="bg-[#f4f6f8] py-16"
+      viewport={{ once: true }}
+      className="bg-[#f4f6f8] py-16 relative"
     >
-      <div className="container mx-auto text-center">
+      {/* Container with same width as navbar */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Heading */}
         <motion.div variants={textVariant(0.3)}>
           <motion.h2 
@@ -35,6 +37,7 @@ const LegacySection = () => {
           {/* Logo 1 */}
           <motion.div 
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             variants={fadeIn("right", 0.7)}
             className="bg-white px-10 py-6 rounded-xl border-2 border-blue-200 shadow-sm hover:shadow-md transition-all"
           >
@@ -48,6 +51,7 @@ const LegacySection = () => {
           {/* Logo 2 */}
           <motion.div 
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             variants={fadeIn("up", 0.8)}
             className="bg-white px-10 py-6 rounded-xl border-2 border-blue-200 shadow-sm hover:shadow-md transition-all"
           >
@@ -61,6 +65,7 @@ const LegacySection = () => {
           {/* Logo 3 */}
           <motion.div 
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             variants={fadeIn("left", 0.9)}
             className="bg-white px-10 py-6 rounded-xl border-2 border-blue-200 shadow-sm hover:shadow-md transition-all"
           >

@@ -9,7 +9,7 @@ const Footer = () => {
       variants={fadeIn("up", 0.2)}
       initial="hidden"
       whileInView="show"
-      className="bg-[#0033a0] text-white pt-12 font-sans"
+      className="bg-[#3366BB] text-white pt-12 font-sans"
     >
       {/* Main footer content with max-width constraint */}
       <div className="max-w-7xl mx-auto px-4">

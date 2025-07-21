@@ -15,7 +15,7 @@ const ConstructionCTA = () => {
           </div>
 
           {/* Right Side Content */}
-          <div className="w-full md:w-1/2 bg-[#0033a0] text-white flex items-center p-6 sm:p-8">
+          <div className="w-full md:w-1/2 bg-[#3366BB] text-white flex items-center p-6 sm:p-8">
             <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-bold leading-tight">
                 Ready to cement your future with us?

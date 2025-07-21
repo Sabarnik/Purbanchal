@@ -17,7 +17,7 @@ const Testimonials = () => {
         {/* Cards */}
         <div className="grid md:grid-cols-2 gap-8">
           {/* Card 1 */}
-          <div className="bg-[#0033a0] text-white p-8 rounded-xl shadow-lg relative">
+          <div className="bg-[#3366BB] text-white p-8 rounded-xl shadow-lg relative">
             <div className="absolute top-6 left-6 text-orange-400 text-5xl opacity-20">
               "
             </div>
@@ -46,7 +46,7 @@ const Testimonials = () => {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-[#0033a0] text-white p-8 rounded-xl shadow-lg relative">
+          <div className="bg-[#3366BB] text-white p-8 rounded-xl shadow-lg relative">
             <div className="absolute top-6 left-6 text-orange-400 text-5xl opacity-20">
               "
             </div>

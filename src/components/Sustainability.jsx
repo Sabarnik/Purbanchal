@@ -2,11 +2,11 @@ import React from "react";
 
 const SustainabilitySection = () => {
   return (
-    <section className="bg-white py-16 px-4 relative">
+    <section className="bg-white py-16 relative">
       {/* Right-side background pattern */}
       <div className="absolute right-0 top-0 h-full w-1/2 bg-[url('/esg-pattern.png')] bg-no-repeat bg-right bg-contain opacity-10 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10 text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Heading */}
         <div className="flex items-center justify-center space-x-4 mb-4">
           <h2 className="text-lg md:text-2xl text-orange-500 font-semibold mb-3">
@@ -21,7 +21,7 @@ const SustainabilitySection = () => {
         </p>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
               title: "Environment",

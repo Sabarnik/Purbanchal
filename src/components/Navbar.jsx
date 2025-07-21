@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { HiMenu, HiX, HiChevronDown, HiChevronUp } from "react-icons/hi";
+import { HiMenu, HiX, HiChevronDown, HiChevronUp, HiSearch } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
-import { fadeIn } from "../utils/motion";
 
 const DropdownMenu = ({ items, isOpen, onClose }) => {
   const dropdownRef = useRef(null);
@@ -57,9 +56,10 @@ const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
   const navLinks = [
-    { href: "#home", label: "Home" },
     {
       href: "#about",
       label: "About us",
@@ -68,6 +68,7 @@ const Navbar = () => {
         { href: "#about-company", label: "Our Company" },
         { href: "#about-team", label: "Our Team" },
         { href: "#about-mission", label: "Mission & Vision" },
+        { href: "#careers", label: "Careers" },
       ],
     },
     {
@@ -92,11 +93,17 @@ const Navbar = () => {
     },
     { href: "#sustainability", label: "Sustainability" },
     { href: "#media", label: "Media" },
-    { href: "#careers", label: "Careers" },
   ];
 
   const toggleDropdown = (index) => {
     setOpenDropdown(openDropdown === index ? null : index);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log("Searching for:", searchQuery);
+    setSearchQuery("");
+    setShowSearch(false);
   };
 
   useEffect(() => {
@@ -113,35 +120,33 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      variants={fadeIn("down", 0.1)}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-     className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
-  showNavbar ? "translate-y-[2rem]" : "-translate-y-full"
-} ${
-  isScrolled
-    ? "bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-md"
-    : "bg-white/30 backdrop-blur-sm"
-}`}
-
+      className={`fixed top-[2rem] left-0 right-0 z-[49] transition-all duration-300 ${
+        showNavbar ? "translate-y-0" : "-translate-y-full"
+      } ${
+        isScrolled
+          ? "bg-white shadow-md"
+          : "bg-white/5 backdrop-sm"
+      }`}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20 relative">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-[4rem]">
         {/* Logo */}
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <img
-            src="/purbanchal/logo.png"
-            alt="Logo"
-            className="h-12 w-auto cursor-pointer"
+          <img 
+            src="/purbanchal/logo.png" 
+            alt="Logo" 
+            className="h-12 w-auto cursor-pointer" 
           />
         </motion.div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-10 h-full">
+        <div className="hidden md:flex items-center space-x-8 h-full ml-auto mr-6">
           {navLinks.map((link, index) => (
             <div key={index} className="relative h-full flex items-center">
               <motion.button
@@ -155,12 +160,12 @@ const Navbar = () => {
                     setOpenDropdown(null);
                   }
                 }}
-                className={`flex items-center text-lg font-medium transition-all duration-300 ${
+                className={`flex items-center text-lg font-medium transition-all duration-200 ${
                   activeLink === link.href
-                    ? "text-blue-600"
+                    ? "text-[#3366BB] font-semibold"
                     : isScrolled
-                    ? "text-gray-700 hover:text-black"
-                    : "text-white hover:text-gray-200"
+                    ? "text-gray-700 hover:text-[#3366BB]"
+                    : "text-white hover:text-white/90"
                 }`}
               >
                 {link.label}
@@ -170,17 +175,9 @@ const Navbar = () => {
                     transition={{ duration: 0.2 }}
                   >
                     {openDropdown === index ? (
-                      <HiChevronUp
-                        className={`ml-1 h-5 w-5 ${
-                          isScrolled ? "text-gray-600" : "text-white"
-                        }`}
-                      />
+                      <HiChevronUp className="ml-1 h-5 w-5 text-inherit" />
                     ) : (
-                      <HiChevronDown
-                        className={`ml-1 h-5 w-5 ${
-                          isScrolled ? "text-gray-600" : "text-white"
-                        }`}
-                      />
+                      <HiChevronDown className="ml-1 h-5 w-5 text-inherit" />
                     )}
                   </motion.div>
                 )}
@@ -197,21 +194,50 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* CTA */}
-        <motion.a
-          href="#contact"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className={`hidden md:inline-block px-6 py-3 rounded-lg text-lg font-medium ${
-            isScrolled
-              ? "bg-blue-600 text-white hover:bg-blue-700"
-              : "bg-white text-blue-600 hover:bg-gray-100"
-          } hover:shadow-lg transition-all`}
-        >
-          Contact Us
-        </motion.a>
+        {/* Search Button */}
+        <div className="hidden md:flex items-center">
+          <AnimatePresence>
+            {showSearch ? (
+              <motion.div
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: 200 }}
+                exit={{ opacity: 0, width: 0 }}
+                className="overflow-hidden flex items-center"
+              >
+                <motion.form onSubmit={handleSearch} className="flex items-center">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="bg-white border border-gray-300 rounded-l-lg px-3 py-1 outline-none w-full text-gray-800"
+                  />
+                  <button
+                    type="submit"
+                    className="px-3 py-1 rounded-r-lg bg-[#3366BB] text-white hover:bg-[#2a56a0] transition-colors"
+                  >
+                    <HiSearch className="h-5 w-5" />
+                  </button>
+                </motion.form>
+              </motion.div>
+            ) : (
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setShowSearch(true)}
+                className={`p-2 rounded-full ${
+                  isScrolled
+                    ? "bg-gray-100 text-gray-700 hover:bg-[#3366BB] hover:text-white"
+                    : "bg-white/20 text-white hover:bg-white/30"
+                }`}
+              >
+                <HiSearch className="h-5 w-5" />
+              </motion.button>
+            )}
+          </AnimatePresence>
+        </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Menu Button */}
         <motion.button
           className="md:hidden p-2"
           onClick={() => {
@@ -222,17 +248,9 @@ const Navbar = () => {
           whileTap={{ scale: 0.9 }}
         >
           {isMenuOpen ? (
-            <HiX
-              className={`h-8 w-8 ${
-                isScrolled ? "text-gray-800" : "text-white"
-              }`}
-            />
+            <HiX className={`h-8 w-8 ${isScrolled ? "text-gray-800" : "text-white"}`} />
           ) : (
-            <HiMenu
-              className={`h-8 w-8 ${
-                isScrolled ? "text-gray-800" : "text-white"
-              }`}
-            />
+            <HiMenu className={`h-8 w-8 ${isScrolled ? "text-gray-800" : "text-white"}`} />
           )}
         </motion.button>
       </div>
@@ -244,49 +262,41 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className={`md:hidden ${
-              isScrolled ? "bg-white" : "bg-white/90 backdrop-blur-md"
-            } border-t border-gray-200 overflow-hidden shadow-inner`}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden bg-white shadow-lg"
           >
-            <div className="container mx-auto px-4 space-y-2 py-4">
+            <div className="px-4 pt-2 pb-6 space-y-2">
               {navLinks.map((link, index) => (
-                <motion.div
+                <motion.div 
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
                 >
                   <div className="flex items-center justify-between">
                     <a
                       href={link.href}
                       onClick={() => {
                         if (!link.hasDropdown) {
-                          setActiveLink(link.href);
                           setIsMenuOpen(false);
-                          setOpenDropdown(null);
+                          setActiveLink(link.href);
                         }
                       }}
-                      className={`block text-left text-lg font-medium py-3 px-3 rounded-lg w-full ${
+                      className={`block py-3 px-4 text-lg w-full ${
                         activeLink === link.href
-                          ? "text-blue-600"
+                          ? "text-[#3366BB] font-medium"
                           : "text-gray-700 hover:bg-gray-100"
                       }`}
                     >
                       {link.label}
                     </a>
                     {link.hasDropdown && (
-                      <button
+                      <button 
                         onClick={() => toggleDropdown(index)}
-                        className="p-2"
+                        className="p-2 mr-2"
                       >
-                        <motion.div
-                          animate={{ rotate: openDropdown === index ? 180 : 0 }}
-                        >
-                          {openDropdown === index ? (
-                            <HiChevronUp className="h-5 w-5 text-gray-600" />
-                          ) : (
-                            <HiChevronDown className="h-5 w-5 text-gray-600" />
-                          )}
+                        <motion.div animate={{ rotate: openDropdown === index ? 180 : 0 }}>
+                          <HiChevronDown className="h-5 w-5 text-gray-500" />
                         </motion.div>
                       </button>
                     )}
@@ -297,39 +307,45 @@ const Navbar = () => {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="pl-6 space-y-2 mt-2"
+                      className="pl-6 space-y-1"
                     >
                       {link.dropdownItems.map((item, i) => (
-                        <motion.a
+                        <a
                           key={i}
                           href={item.href}
-                          onClick={() => {
-                            setIsMenuOpen(false);
-                            setOpenDropdown(null);
-                          }}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: i * 0.05 }}
-                          className="block py-2.5 px-4 text-base text-gray-600 hover:bg-gray-100 rounded-lg transition-all"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block py-2 px-4 text-gray-600 hover:bg-gray-100 rounded-lg"
                         >
                           {item.label}
-                        </motion.a>
+                        </a>
                       ))}
                     </motion.div>
                   )}
                 </motion.div>
               ))}
-              <motion.a
-                href="#contact"
+
+              {/* Mobile Search */}
+              <motion.form
+                onSubmit={handleSearch}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="block bg-blue-600 text-white px-8 py-3.5 rounded-lg text-center text-lg font-medium hover:shadow-lg transition-all mt-6 mb-4"
+                transition={{ delay: 0.2 }}
+                className="flex items-center bg-gray-100 rounded-full px-4 py-2 mt-4"
               >
-                Contact Us
-              </motion.a>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bg-transparent border-none outline-none w-full text-gray-700"
+                />
+                <button
+                  type="submit"
+                  className="ml-2 p-1 bg-[#3366BB] text-white rounded-full"
+                >
+                  <HiSearch className="h-5 w-5" />
+                </button>
+              </motion.form>
             </div>
           </motion.div>
         )}

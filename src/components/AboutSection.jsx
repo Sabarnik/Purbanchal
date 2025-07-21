@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const AboutSection = () => {
-  // For parallax effect
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -10,7 +9,6 @@ const AboutSection = () => {
   });
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -49,12 +47,13 @@ const AboutSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-16 px-8 overflow-hidden min-h-[600px]"
+      className="relative py-16 px-8 overflow-hidden min-h-[600px] mt-20" // Added mt-20 for navbar spacing
       style={{
         background: "linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9))",
       }}
+      id="about" // Added ID to link with navbar
     >
-      {/* Parallax background – scoped to this section only */}
+      {/* Parallax background */}
       <motion.div 
         style={{ 
           y: yBg,
@@ -63,7 +62,7 @@ const AboutSection = () => {
         className="absolute inset-0 w-full h-full bg-cover bg-center -z-10"
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
           initial="hidden"
@@ -73,7 +72,6 @@ const AboutSection = () => {
         >
           {/* Left Content */}
           <div className="space-y-8">
-            {/* About Title */}
             <motion.div 
               className="text-center lg:text-left"
               variants={itemVariants}
@@ -82,7 +80,6 @@ const AboutSection = () => {
               <div className="w-16 h-1 bg-blue-600 mx-auto lg:mx-0"></div>
             </motion.div>
             
-            {/* Content Text */}
             <motion.div 
               className="space-y-6"
               variants={itemVariants}
@@ -101,7 +98,6 @@ const AboutSection = () => {
               </p>
             </motion.div>
             
-            {/* Discover Me Button */}
             <motion.div 
               className="pt-6"
               variants={itemVariants}
@@ -122,7 +118,6 @@ const AboutSection = () => {
             variants={imageVariants}
           >
             <div className="relative">
-              {/* Orange background shape */}
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl transform rotate-2 scale-105"
                 animate={{
@@ -136,7 +131,6 @@ const AboutSection = () => {
                 }}
               />
               
-              {/* Industrial facility image */}
               <motion.div 
                 className="relative bg-white rounded-2xl overflow-hidden shadow-xl"
                 whileHover={{ scale: 1.02 }}

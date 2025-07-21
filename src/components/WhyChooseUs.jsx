@@ -3,7 +3,7 @@ import React from "react";
 const WhyChooseUs = () => {
   return (
     <section className="py-16 bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="text-center mb-12">
           <h2 className="text-lg md:text-2xl text-orange-500 font-semibold mb-3 animate-fadeIn">
@@ -20,7 +20,7 @@ const WhyChooseUs = () => {
         {/* Main Box */}
         <div className="grid grid-cols-1 md:grid-cols-2 bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 animate-slideUp">
           {/* Left Blue Panel */}
-          <div className="relative bg-[#003c88] text-white p-8 space-y-6">
+          <div className="relative bg-[#3366BB] text-white p-8 space-y-6">
             {/* Orange Tab (left side) */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2 h-12 w-2 bg-orange-500 rounded-r animate-pulse-slow" />
 
