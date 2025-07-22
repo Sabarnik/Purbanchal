@@ -128,7 +128,7 @@ const Navbar = () => {
       } ${
         isScrolled
           ? "bg-white shadow-md"
-          : "bg-white/5 backdrop-sm"
+          : "bg-white shadow-md"
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-[4rem]">
@@ -165,7 +165,7 @@ const Navbar = () => {
                     ? "text-[#3366BB] font-semibold"
                     : isScrolled
                     ? "text-gray-700 hover:text-[#3366BB]"
-                    : "text-white hover:text-white/90"
+                    : "text-gray-700 hover:text-[#3366BB]"
                 }`}
               >
                 {link.label}
@@ -228,7 +228,7 @@ const Navbar = () => {
                 className={`p-2 rounded-full ${
                   isScrolled
                     ? "bg-gray-100 text-gray-700 hover:bg-[#3366BB] hover:text-white"
-                    : "bg-white/20 text-white hover:bg-white/30"
+                    : "bg-gray-100 text-gray-700 hover:bg-[#3366BB] hover:text-white"
                 }`}
               >
                 <HiSearch className="h-5 w-5" />
