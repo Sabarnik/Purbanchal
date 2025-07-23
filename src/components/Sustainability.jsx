@@ -1,10 +1,16 @@
+/* global __IMAGE_BASE_PATH__ */
 import React from "react";
 
 const SustainabilitySection = () => {
   return (
     <section className="bg-white py-16 relative">
       {/* Right-side background pattern */}
-      <div className="absolute right-0 top-0 h-full w-1/2 bg-[url('/esg-pattern.png')] bg-no-repeat bg-right bg-contain opacity-10 pointer-events-none" />
+      <div
+        className="absolute right-0 top-0 h-full w-1/2 bg-no-repeat bg-right bg-contain opacity-10 pointer-events-none"
+        style={{
+          backgroundImage: `url(${__IMAGE_BASE_PATH__}/esg-pattern.png)`,
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Heading */}
@@ -25,7 +31,7 @@ const SustainabilitySection = () => {
           {[
             {
               title: "Environment",
-              img: "environment.png",
+              img: `${__IMAGE_BASE_PATH__}/environment.png`,
               alt: "Environment",
               overlayText:
                 "Reducing carbon footprint through sustainable manufacturing",
@@ -34,7 +40,7 @@ const SustainabilitySection = () => {
             },
             {
               title: "Social",
-              img: "social.png",
+              img: `${__IMAGE_BASE_PATH__}/social.png`,
               alt: "Social",
               overlayText: "Empowering communities through inclusive growth",
               gradientFrom: "from-blue-500/20",
@@ -42,7 +48,7 @@ const SustainabilitySection = () => {
             },
             {
               title: "Governance",
-              img: "governance.png",
+              img: `${__IMAGE_BASE_PATH__}/governance.png`,
               alt: "Governance",
               overlayText:
                 "Ethical leadership with transparent business practices",
@@ -57,7 +63,7 @@ const SustainabilitySection = () => {
               {/* Orange border effect */}
               <div className="absolute inset-0 border-b-8 border-r-8 border-orange-500 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none"></div>
 
-              {/* Image container with proper aspect ratio */}
+              {/* Image container */}
               <div className="relative w-full h-full overflow-hidden">
                 <img
                   src={card.img}
@@ -67,17 +73,19 @@ const SustainabilitySection = () => {
                 />
               </div>
 
-              {/* Fading gradient overlay (on hover) */}
-              <div className={`absolute inset-0 bg-gradient-to-t ${card.gradientFrom} ${card.gradientTo} opacity-0 group-hover:opacity-100 transition-all duration-500`}></div>
+              {/* Gradient overlay */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-t ${card.gradientFrom} ${card.gradientTo} opacity-0 group-hover:opacity-100 transition-all duration-500`}
+              ></div>
 
-              {/* Default Title (disappears on hover) */}
+              {/* Default Title */}
               <div className="absolute bottom-0 left-0 p-6 w-full transition-opacity duration-300 group-hover:opacity-0">
                 <h3 className="text-white text-xl md:text-2xl font-bold text-left">
                   {card.title}
                 </h3>
               </div>
 
-              {/* Hover Content */}
+              {/* Hover Overlay Content */}
               <div className="absolute bottom-0 left-0 p-6 w-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-100">
                 <h3 className="text-white text-2xl md:text-3xl font-bold text-left mb-3">
                   {card.title}

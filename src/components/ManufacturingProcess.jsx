@@ -1,3 +1,4 @@
+/* global __IMAGE_BASE_PATH__ */
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -5,27 +6,27 @@ import { useInView } from "react-intersection-observer";
 const processSteps = [
   {
     title: "Quarry",
-    image: "/purbanchal/Quarry.png",
+    image: `${__IMAGE_BASE_PATH__}/Quarry.png`,
   },
   {
     title: "Crusher",
-    image: "/purbanchal/Crusher.png",
+    image: `${__IMAGE_BASE_PATH__}/Crusher.png`,
   },
   {
     title: "Raw Mill",
-    image: "/purbanchal/Rawmil to prehitting.png",
+    image: `${__IMAGE_BASE_PATH__}/Rawmil to prehitting.png`,
   },
   {
     title: "Preheating & Rotary Kiln",
-    image: "/purbanchal/Group 111.png",
+    image: `${__IMAGE_BASE_PATH__}/Group 111.png`,
   },
   {
     title: "Klinker Storage & Finish Grinding",
-    image: "/purbanchal/kilner storage to finish griding.png",
+    image: `${__IMAGE_BASE_PATH__}/kilner storage to finish griding.png`,
   },
   {
     title: "Dispatch",
-    image: "/purbanchal/Dispatch.png",
+    image: `${__IMAGE_BASE_PATH__}/Dispatch.png`,
   },
 ];
 
@@ -117,7 +118,7 @@ const ManufacturingProcess = () => {
           </motion.p>
         </motion.div>
 
-        {/* Top Row: Icons + vertical line + diamond */}
+        {/* Icons */}
         <motion.div
           className="flex flex-col md:flex-row justify-between items-center gap-y-10"
           initial="hidden"
@@ -157,7 +158,7 @@ const ManufacturingProcess = () => {
           ))}
         </motion.div>
 
-        {/* Bottom Row: Titles + Arrows between them */}
+        {/* Titles + Arrows */}
         <motion.div
           className="flex flex-wrap justify-between items-center mt-6 px-2"
           initial="hidden"

@@ -1,7 +1,7 @@
+/* global __IMAGE_BASE_PATH__ */
 import React from "react";
 
 const ProjectsSection = () => {
-  // Inline styles for animations and visual effects
   const styles = `
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -117,34 +117,28 @@ const ProjectsSection = () => {
   return (
     <div className="bg-[#3366BB] w-full overflow-hidden relative">
       <style>{styles}</style>
-      {/* Diagonal lines background pattern */}
+
       <div className="diagonal-lines-bg"></div>
-      
+
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-        {/* Heading */}
-        <div className="text-center mb-16 transition-all duration-500 hover:scale-[1.01]">
+        <div className="text-center mb-16">
           <h2 className="text-lg md:text-2xl text-orange-500 font-semibold mb-3 animate-fadeIn">
             ← Our Projects →
           </h2>
-          <p className="text-white text-lg max-w-3xl mx-auto leading-relaxed transition-all duration-500 hover:text-opacity-90">
-            Explore our journey through impactful real estate projects that
-            reflect strength, quality, and attention to detail built to stand
-            the test of time.
+          <p className="text-white text-lg max-w-3xl mx-auto leading-relaxed">
+            Explore our journey through impactful real estate projects that reflect strength, quality, and attention to detail built to stand the test of time.
           </p>
         </div>
 
-        {/* Project 1 (Image Left) */}
+        {/* Project 1 */}
         <div className="relative cut-effect">
           <div className="flex flex-col lg:flex-row bg-[#2a5ba7] rounded-xl overflow-hidden mb-12 shadow-xl project-card">
-            {/* Image */}
             <div className="lg:w-1/2 relative overflow-hidden">
-              <div className="aspect-w-16 aspect-h-9 w-full h-full">
-                <img
-                  src="project1.png"
-                  alt="Project Image"
-                  className="w-full h-full object-cover project-image"
-                />
-              </div>
+              <img
+                src={`${__IMAGE_BASE_PATH__}/project1.png`}
+                alt="Project Image"
+                className="w-full h-full object-cover project-image"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 project-overlay" />
               <div className="absolute bottom-0 left-0 p-6 translate-y-4 project-badge">
                 <span className="inline-block px-4 py-2 bg-orange-500 text-white rounded-full text-sm font-medium">
@@ -152,80 +146,35 @@ const ProjectsSection = () => {
                 </span>
               </div>
             </div>
-            {/* Text Content */}
             <div className="lg:w-1/2 p-8 md:p-10 text-white flex flex-col justify-center project-content">
-              <h2 className="text-3xl font-bold mb-3 transition-all duration-300 project-title">
-                Ark - 1
-              </h2>
-              <p className="font-semibold text-orange-400 mb-5 transition-all duration-300 project-subtitle">
+              <h2 className="text-3xl font-bold mb-3 project-title">Ark - 1</h2>
+              <p className="font-semibold text-orange-400 mb-5 project-subtitle">
                 By Imperial Group
               </p>
-              <p className="text-gray-300 mb-8 text-lg leading-relaxed transition-all duration-300 project-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
+              <p className="text-gray-300 mb-8 text-lg leading-relaxed project-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
               <div className="flex flex-wrap items-center gap-6">
-                <div className="flex items-center gap-2 text-orange-400 font-medium transition-all duration-300 project-detail">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 flex-shrink-0 project-icon"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                  <span>Guwahati, Assam</span>
+                <div className="flex items-center gap-2 text-orange-400 font-medium project-detail">
+                  📍 Guwahati, Assam
                 </div>
-                <div className="flex items-center gap-2 text-orange-400 font-medium transition-all duration-300 project-detail">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 flex-shrink-0 project-icon"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
-                  <span>+91 12345 67890</span>
+                <div className="flex items-center gap-2 text-orange-400 font-medium project-detail">
+                  📞 +91 12345 67890
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Project 2 (Image Right) */}
+        {/* Project 2 */}
         <div className="relative cut-effect">
           <div className="flex flex-col lg:flex-row-reverse bg-[#2a5ba7] rounded-xl overflow-hidden mb-12 shadow-xl project-card">
-            {/* Image */}
             <div className="lg:w-1/2 relative overflow-hidden">
-  <div className="aspect-w-16 aspect-h-9 w-full h-full">
-    <img
-      src="project1.png"
-      alt="Project Image"
-      className="w-full h-full object-cover transform -scale-x-100"
-    />
-  </div>
-
-
+              <img
+                src={`${__IMAGE_BASE_PATH__}/project1.png`}
+                alt="Project Image"
+                className="w-full h-full object-cover transform -scale-x-100 project-image"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 project-overlay" />
               <div className="absolute bottom-0 left-0 p-6 translate-y-4 project-badge">
                 <span className="inline-block px-4 py-2 bg-orange-500 text-white rounded-full text-sm font-medium">
@@ -233,67 +182,27 @@ const ProjectsSection = () => {
                 </span>
               </div>
             </div>
-            {/* Text Content */}
             <div className="lg:w-1/2 p-8 md:p-10 text-white flex flex-col justify-center project-content">
-              <h2 className="text-3xl font-bold mb-3 transition-all duration-300 project-title">
-                Ark - 2
-              </h2>
-              <p className="font-semibold text-orange-400 mb-5 transition-all duration-300 project-subtitle">
+              <h2 className="text-3xl font-bold mb-3 project-title">Ark - 2</h2>
+              <p className="font-semibold text-orange-400 mb-5 project-subtitle">
                 By Imperial Group
               </p>
-              <p className="text-gray-300 mb-8 text-lg leading-relaxed transition-all duration-300 project-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
+              <p className="text-gray-300 mb-8 text-lg leading-relaxed project-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
               <div className="flex flex-wrap items-center gap-6">
-                <div className="flex items-center gap-2 text-orange-400 font-medium transition-all duration-300 project-detail">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 flex-shrink-0 project-icon"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                  <span>Guwahati, Assam</span>
+                <div className="flex items-center gap-2 text-orange-400 font-medium project-detail">
+                  📍 Guwahati, Assam
                 </div>
-                <div className="flex items-center gap-2 text-orange-400 font-medium transition-all duration-300 project-detail">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 flex-shrink-0 project-icon"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
-                  <span>+91 12345 67890</span>
+                <div className="flex items-center gap-2 text-orange-400 font-medium project-detail">
+                  📞 +91 12345 67890
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* View All Button */}
+        {/* Button */}
         <div className="text-center mt-16 animate-fadeIn">
           <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 px-8 rounded-full view-all-btn">
             <span className="relative z-10">View All Projects</span>

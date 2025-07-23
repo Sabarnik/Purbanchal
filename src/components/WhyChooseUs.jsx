@@ -1,3 +1,4 @@
+/* global __IMAGE_BASE_PATH__ */
 import React from "react";
 
 const WhyChooseUs = () => {
@@ -12,7 +13,7 @@ const WhyChooseUs = () => {
           <p className="animate-fadeIn delay-100">
             <span className="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">
               Purbanchal Cement is the foundation of India's growth, trusted by
-              builders big and small for its unmatched quality and reliability
+              builders big and small for its unmatched quality and reliability.
             </span>
           </p>
         </div>
@@ -21,10 +22,10 @@ const WhyChooseUs = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 animate-slideUp">
           {/* Left Blue Panel */}
           <div className="relative bg-[#3366BB] text-white p-8 space-y-6">
-            {/* Orange Tab (left side) */}
+            {/* Orange Tab */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2 h-12 w-2 bg-orange-500 rounded-r animate-pulse-slow" />
 
-            {/* Items */}
+            {/* Feature Items */}
             {[
               {
                 icon: "https://cdn-icons-png.flaticon.com/512/3522/3522658.png",
@@ -52,8 +53,8 @@ const WhyChooseUs = () => {
                 desc: "From start to finish, our dedicated team is here to support your project hassle-free and always reliable.",
               },
             ].map((item, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="flex items-start gap-4 group transition-all duration-300 hover:scale-[1.02] hover:pl-2"
               >
                 <img
@@ -73,14 +74,13 @@ const WhyChooseUs = () => {
             ))}
           </div>
 
-          {/* Right Image Panel - Fixed overlay cropping */}
+          {/* Right Image Panel */}
           <div className="relative group min-h-[500px] md:min-h-full overflow-hidden">
-            {/* Orange Tab (right side) */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 h-12 w-2 bg-orange-500 rounded-l z-20 animate-pulse-slow" />
             <div className="relative h-full w-full">
               <div className="absolute inset-0 overflow-hidden">
                 <img
-                  src="why-choose-us.png"
+                  src={`${__IMAGE_BASE_PATH__}/why-choose-us.png`}
                   alt="Construction site"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -91,34 +91,53 @@ const WhyChooseUs = () => {
         </div>
       </div>
 
-      {/* Global styles for animations */}
+      {/* Global Styles */}
       <style jsx global>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
+
         @keyframes slideUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
+
         @keyframes pulse-slow {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.6; }
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.6;
+          }
         }
+
         .animate-fadeIn {
           animation: fadeIn 0.8s ease-out forwards;
         }
+
         .animate-slideUp {
           animation: slideUp 0.8s ease-out forwards;
         }
+
         .animate-pulse-slow {
           animation: pulse-slow 2.5s infinite;
         }
+
         .delay-100 {
           animation-delay: 0.1s;
-        }
-        .delay-200 {
-          animation-delay: 0.2s;
         }
       `}</style>
     </section>

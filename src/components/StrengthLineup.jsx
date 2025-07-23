@@ -1,3 +1,4 @@
+/* global __IMAGE_BASE_PATH__ */
 import React, { useEffect, useRef, useState } from 'react';
 
 const StrengthLineup = () => {
@@ -14,7 +15,6 @@ const StrengthLineup = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && logoRef.current) {
-          // Initial grow + fade-in animation
           logoRef.current.style.transform = 'scale(1.5)';
           logoRef.current.style.opacity = '0';
 
@@ -26,7 +26,6 @@ const StrengthLineup = () => {
             logoRef.current.style.opacity = '1';
           }, 100);
 
-          // Reset transition to default ease
           setTimeout(() => {
             if (!logoRef.current) return;
             logoRef.current.style.transition = 'all 0.3s ease';
@@ -48,7 +47,7 @@ const StrengthLineup = () => {
     position: 'relative',
     width: '100%',
     minHeight: '100vh',
-    backgroundImage: 'url("/purbanchal/product_display_bg.jpg")',
+    backgroundImage: `url("${__IMAGE_BASE_PATH__}/product_display_bg.jpg")`,
     backgroundSize: 'cover',
     backgroundPosition: 'center 70%',
     backgroundRepeat: 'no-repeat',
@@ -91,7 +90,6 @@ const StrengthLineup = () => {
     margin: '10px auto 0'
   };
 
-  // Logo style: stamped effect + horizontal fade
   const logoStyle = {
     width: isMobile ? '120px' : '180px',
     height: 'auto',
@@ -121,7 +119,7 @@ const StrengthLineup = () => {
     paddingBottom: '40px'
   };
 
-  const bagStyle = (w, h, mb, scale = 1) => ({
+  const bagStyle = (w, _h, mb, scale = 1) => ({
     width: `clamp(${w * 0.7}px, ${w}px, ${w * 1.3}px)`,
     height: 'auto',
     marginBottom: mb,
@@ -138,13 +136,13 @@ const StrengthLineup = () => {
     display: 'block'
   };
 
-  const handleMouseEnter = e => {
-    const scale = parseFloat(e.currentTarget.dataset.scale || 1) * 1.05;
+  const handleMouseEnter = (e) => {
+    const scale = parseFloat(e.currentTarget.dataset.scale || '1') * 1.05;
     e.currentTarget.style.transform = `translateY(-10px) scale(${scale})`;
   };
 
-  const handleMouseLeave = e => {
-    const scale = e.currentTarget.dataset.scale || 1;
+  const handleMouseLeave = (e) => {
+    const scale = e.currentTarget.dataset.scale || '1';
     e.currentTarget.style.transform = `scale(${scale})`;
   };
 
@@ -166,10 +164,9 @@ const StrengthLineup = () => {
         <p style={subtitleStyle}>Versatile strength for every build you envision</p>
       </div>
 
-      {/* Surya logo with stamped & horizontal fade effect */}
       <img
         ref={logoRef}
-        src="/purbanchal/surya-logo.png"
+        src={`${__IMAGE_BASE_PATH__}/surya-logo.png`}
         alt="Surya Cement Logo"
         style={logoStyle}
         loading="eager"
@@ -181,14 +178,24 @@ const StrengthLineup = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <img src="/purbanchal/left.png" alt="Surya Concretec Cement" style={imageStyle} loading="lazy" />
+          <img
+            src={`${__IMAGE_BASE_PATH__}/left.png`}
+            alt="Surya Concretec Cement"
+            style={imageStyle}
+            loading="lazy"
+          />
         </div>
         <div
           style={bagStyle(isMobile ? 160 : 230, isMobile ? 210 : 310, isMobile ? 0 : -30)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <img src="/purbanchal/middle.png" alt="Surya Gold Cement" style={imageStyle} loading="lazy" />
+          <img
+            src={`${__IMAGE_BASE_PATH__}/middle.png`}
+            alt="Surya Gold Cement"
+            style={imageStyle}
+            loading="lazy"
+          />
         </div>
         <div
           style={bagStyle(isMobile ? 150 : 220, isMobile ? 190 : 300, isMobile ? 0 : -10, 1.1)}
@@ -196,7 +203,12 @@ const StrengthLineup = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <img src="/purbanchal/right.png" alt="Surya OPC Cement" style={imageStyle} loading="lazy" />
+          <img
+            src={`${__IMAGE_BASE_PATH__}/right.png`}
+            alt="Surya OPC Cement"
+            style={imageStyle}
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

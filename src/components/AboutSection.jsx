@@ -1,3 +1,4 @@
+/* global __IMAGE_BASE_PATH__ */
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -47,11 +48,11 @@ const AboutSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-16 px-8 overflow-hidden min-h-[600px] mt-20" // Added mt-20 for navbar spacing
+      className="relative py-16 px-8 overflow-hidden min-h-[600px] mt-20"
       style={{
         background: "linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9))",
       }}
-      id="about" // Added ID to link with navbar
+      id="about"
     >
       {/* Parallax background */}
       <motion.div 
@@ -120,9 +121,7 @@ const AboutSection = () => {
             <div className="relative">
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl transform rotate-2 scale-105"
-                animate={{
-                  rotate: [2, -1, 2],
-                }}
+                animate={{ rotate: [2, -1, 2] }}
                 transition={{
                   duration: 8,
                   repeat: Infinity,
@@ -137,7 +136,7 @@ const AboutSection = () => {
                 transition={{ duration: 0.3 }}
               >
                 <img 
-                  src="cement-factory.png" 
+                  src={`${__IMAGE_BASE_PATH__}/cement-factory.png`} 
                   alt="Industrial Cement Manufacturing Plant" 
                   className="w-full h-96 lg:h-[500px] object-cover"
                 />
