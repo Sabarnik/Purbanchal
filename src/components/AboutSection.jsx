@@ -86,16 +86,16 @@ const AboutSection = () => {
               variants={itemVariants}
             >
               <p className="text-gray-500 text-lg leading-relaxed">
-                <span className="font-semibold text-gray-700">CEMENTING BONDS WITH OUR CUSTOMERS...</span> 
-                Purbanchal Cement Limited is one of the most coveted Group of Companies 
-                in Eastern India, having an Integrated Cement Manufacturing 
-                Unit at Sonapur, Kamrup (Assam).
+                <span className="font-semibold text-gray-700">CEMENTING BONDS WITH OUR CUSTOMERS</span> 
               </p>
               
               <p className="text-gray-500 text-lg leading-relaxed">
-                We deliver the best quality Cement contributing to the growth 
-                and development of infrastructure in India, individuals, 
-                commercial and others with their consistent quality and services.
+                 Founded in 2008, Purbanchal Cement Ltd.
+                 (a Maithan Group company) operates a fully integrated cement plant in Sonapur, Assam. 
+                 Under our flagship brands – Surya Gold Cement and Surya Concretec – we produce BIS-standard PPC, OPC,
+                  and premium grade Concretec Cement. With ISO‎ 9001:2008 and 14001:2004 certifications, we stand 
+                  for quality, consistency, and sustainability. Our commitment: Fresh cement, reliable service, and a promise 
+                  to strengthen every structure in Northeast India.
               </p>
             </motion.div>
             

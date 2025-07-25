@@ -1,6 +1,7 @@
 import React from "react"; // ✅ Add this
 import "./App.css";
 import ManufacturingProcess from "./components/ManufacturingProcess";
+import StatsSection from "./components/StatSection";
 import WhyChooseUs from "./components/WhyChooseUs";
 import ToolsSection from "./components/ToolsSection";
 import Topbar from "./components/Topbar";
@@ -24,9 +25,10 @@ function App() {
       <div className="overflow-hidden">
         <Topbar />
         <Navbar />
-        <HeroSection />
+        <HeroSection />  
+        <StatsSection/>      
         <AboutSection />
-        <Addition />
+        <Addition />        
         <StrengthLineup />
         <ToolsSection />
         <WhyChooseUs />

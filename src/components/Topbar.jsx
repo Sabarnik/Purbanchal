@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronDown, Phone, Menu, X } from "lucide-react";
 
 const navItems = [
@@ -21,9 +21,24 @@ const navItems = [
 
 const Topbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-[#3366BB] text-white text-sm py-2 z-50 border-b border-white/20">
+    <div className={`fixed top-0 left-0 w-full text-white text-sm py-2 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? "bg-[#3366BB] border-b border-white/20" 
+        : "bg-transparent border-none"
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* Mobile Menu Button */}
         <div className="md:hidden">
@@ -51,11 +66,13 @@ const Topbar = () => {
 
       {/* Mobile Dropdown Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden px-4 sm:px-6 lg:px-8 mt-2 space-y-3">
+        <div className={`md:hidden px-4 sm:px-6 lg:px-8 mt-2 space-y-3 ${
+          isScrolled ? "bg-[#3366BB]" : "bg-[#3366BB]/90"
+        }`}>
           {navItems.map(({ label, icon }) => (
             <div
               key={label}
-              className="flex items-center space-x-1 cursor-pointer hover:underline"
+              className="flex items-center space-x-1 cursor-pointer hover:underline py-2"
             >
               {icon && icon}
               <span>{label}</span>

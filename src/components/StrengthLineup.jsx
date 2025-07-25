@@ -4,11 +4,16 @@ import React, { useEffect, useRef, useState } from 'react';
 const StrengthLineup = () => {
   const logoRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isSmallMobile, setIsSmallMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const mobile = window.innerWidth <= 768;
+      const smallMobile = window.innerWidth <= 480;
+      setIsMobile(mobile);
+      setIsSmallMobile(smallMobile);
     };
+    
     handleResize();
     window.addEventListener('resize', handleResize);
 
@@ -46,7 +51,7 @@ const StrengthLineup = () => {
   const containerStyle = {
     position: 'relative',
     width: '100%',
-    minHeight: '100vh',
+    minHeight: isSmallMobile ? 'auto' : '100vh',
     backgroundImage: `url("${__IMAGE_BASE_PATH__}/product_display_bg.jpg")`,
     backgroundSize: 'cover',
     backgroundPosition: 'center 70%',
@@ -55,7 +60,7 @@ const StrengthLineup = () => {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '60px 20px 0',
+    padding: isSmallMobile ? '40px 15px 20px' : '60px 20px 0',
     fontFamily: "'Arial', 'Helvetica', sans-serif",
     boxSizing: 'border-box',
     overflow: 'hidden'
@@ -63,20 +68,20 @@ const StrengthLineup = () => {
 
   const headerSectionStyle = {
     textAlign: 'center',
-    marginBottom: '10px',
+    marginBottom: isSmallMobile ? '5px' : '10px',
     zIndex: 2,
     width: '100%'
   };
 
   const lineStyle = {
-    width: 'clamp(20px, 5vw, 40px)',
+    width: isSmallMobile ? '15px' : 'clamp(20px, 5vw, 40px)',
     height: '2px',
     backgroundColor: '#000',
-    margin: '0 8px'
+    margin: '0 5px'
   };
 
   const titleStyle = {
-    fontSize: 'clamp(1.5rem, 6.5vw, 2.5rem)',
+    fontSize: isSmallMobile ? '1.8rem' : 'clamp(1.5rem, 6.5vw, 2.5rem)',
     fontWeight: 'bold',
     color: '#000',
     margin: '0 5px',
@@ -84,16 +89,17 @@ const StrengthLineup = () => {
   };
 
   const subtitleStyle = {
-    fontSize: 'clamp(0.9rem, 3.5vw, 1.1rem)',
+    fontSize: isSmallMobile ? '0.85rem' : 'clamp(0.9rem, 3.5vw, 1.1rem)',
     color: '#555',
-    maxWidth: '90%',
-    margin: '10px auto 0'
+    maxWidth: isSmallMobile ? '95%' : '90%',
+    margin: isSmallMobile ? '8px auto 0' : '10px auto 0',
+    lineHeight: '1.4'
   };
 
   const logoStyle = {
-    width: isMobile ? '120px' : '180px',
+    width: isSmallMobile ? '90px' : isMobile ? '120px' : '180px',
     height: 'auto',
-    margin: '20px 0',
+    margin: isSmallMobile ? '15px 0' : '20px 0',
     transform: 'scale(1)',
     opacity: '0.85',
     transition: 'all 0.3s ease',
@@ -102,27 +108,25 @@ const StrengthLineup = () => {
     mixBlendMode: 'multiply',
     boxShadow: 'inset 0 0 10px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.3)',
     borderRadius: '2px',
-    position: 'relative',
-    WebkitMaskImage: 'linear-gradient(to right, black 60%, transparent 100%)',
-    maskImage: 'linear-gradient(to right, black 60%, transparent 100%)'
+    position: 'relative'
   };
 
   const bagsContainerStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    gap: isMobile ? '15px' : '25px',
+    gap: isSmallMobile ? '10px' : isMobile ? '15px' : '25px',
     zIndex: 2,
     width: '100%',
     flexWrap: 'wrap',
-    marginBottom: '2vh',
-    paddingBottom: '40px'
+    marginBottom: isSmallMobile ? '1vh' : '2vh',
+    paddingBottom: isSmallMobile ? '20px' : '40px'
   };
 
   const bagStyle = (w, _h, mb, scale = 1) => ({
-    width: `clamp(${w * 0.7}px, ${w}px, ${w * 1.3}px)`,
+    width: isSmallMobile ? `${w * 0.6}px` : isMobile ? `${w * 0.7}px` : `${w}px`,
     height: 'auto',
-    marginBottom: mb,
+    marginBottom: isSmallMobile ? `${mb * 0.5}px` : mb,
     transition: 'transform 0.3s ease',
     cursor: 'pointer',
     transform: `scale(${scale})`,
@@ -137,11 +141,13 @@ const StrengthLineup = () => {
   };
 
   const handleMouseEnter = (e) => {
+    if (isMobile) return; // Disable hover effects on mobile
     const scale = parseFloat(e.currentTarget.dataset.scale || '1') * 1.05;
     e.currentTarget.style.transform = `translateY(-10px) scale(${scale})`;
   };
 
   const handleMouseLeave = (e) => {
+    if (isMobile) return; // Disable hover effects on mobile
     const scale = e.currentTarget.dataset.scale || '1';
     e.currentTarget.style.transform = `scale(${scale})`;
   };

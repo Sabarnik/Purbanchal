@@ -131,15 +131,19 @@ const Navbar = () => {
     <motion.nav
       className={`fixed top-[2rem] left-0 right-0 z-[49] transition-all duration-300 ${
         showNavbar ? "translate-y-0" : "-translate-y-full"
-      } ${isScrolled ? "bg-white shadow-md" : "bg-white shadow-md"}`}
+      } ${isScrolled ? "bg-white shadow-md" : "bg-transparent shadow-none"}`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-[4rem]">
-        {/* Logo */}
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        {/* Logo in container */}
+        <motion.div 
+          whileHover={{ scale: 1.05 }} 
+          whileTap={{ scale: 0.95 }}
+          className="bg-white p-2 rounded-lg shadow-sm"
+        >
           <img
             src={`${__IMAGE_BASE_PATH__}/logo.png`}
             alt="Purbanchal Cement Logo"
-            className="h-12 w-auto cursor-pointer"
+            className="h-10 w-auto cursor-pointer"
           />
         </motion.div>
 
@@ -160,7 +164,9 @@ const Navbar = () => {
                 className={`flex items-center text-lg font-medium ${
                   activeLink === link.href
                     ? "text-[#3366BB] font-semibold"
-                    : "text-gray-700 hover:text-[#3366BB]"
+                    : isScrolled 
+                      ? "text-gray-700 hover:text-[#3366BB]"
+                      : "text-white hover:text-orange-500"
                 }`}
               >
                 {link.label}
@@ -219,7 +225,11 @@ const Navbar = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setShowSearch(true)}
-                className="p-2 rounded-full bg-gray-100 text-gray-700 hover:bg-[#3366BB] hover:text-white"
+                className={`p-2 rounded-full ${
+                  isScrolled 
+                    ? "bg-gray-100 text-gray-700 hover:bg-[#3366BB] hover:text-white"
+                    : "bg-white/20 text-white hover:bg-orange-500"
+                }`}
               >
                 <HiSearch className="h-5 w-5" />
               </motion.button>
@@ -238,7 +248,7 @@ const Navbar = () => {
           {isMenuOpen ? (
             <HiX className="h-8 w-8 text-gray-800" />
           ) : (
-            <HiMenu className="h-8 w-8 text-gray-800" />
+            <HiMenu className={`h-8 w-8 ${isScrolled ? "text-gray-800" : "text-white"}`} />
           )}
         </motion.button>
       </div>
