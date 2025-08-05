@@ -1,25 +1,47 @@
 /* global __IMAGE_BASE_PATH__ */
-import React from "react";
+import React, { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 const WhyChooseUs = () => {
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  const [featuresRef, featuresInView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
   return (
-    <section className="py-16 bg-white overflow-hidden">
+    <section className="py-16 bg-gray-100 overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
-        <div className="text-center mb-12">
-          <h2 className="text-lg md:text-2xl text-orange-500 font-semibold mb-3 animate-fadeIn">
+        <div
+          className={`text-center mb-12 transition-all duration-1000 ${
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <h2 className="text-lg md:text-2xl text-orange-500 font-semibold mb-3">
             ← Why Choose Us? →
           </h2>
-          <p className="animate-fadeIn delay-100">
+          <p>
             <span className="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">
               Purbanchal Cement is the foundation of India's growth, trusted by
-              builders big and small for its unmatched quality and reliability.
+              builders big and small for its unmatched  <span class="font-bold">quality, consistency</span> and  <span class="font-bold">reliability</span>.
             </span>
           </p>
         </div>
 
         {/* Main Box */}
-        <div className="grid grid-cols-1 md:grid-cols-2 bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 animate-slideUp">
+        <div
+          ref={featuresRef}
+          className={`grid grid-cols-1 md:grid-cols-2 bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-1000 ${
+            featuresInView
+              ? "opacity-100 translate-y-0 shadow-xl"
+              : "opacity-0 translate-y-20"
+          }`}
+        >
           {/* Left Blue Panel */}
           <div className="relative bg-[#3366BB] text-white p-8 space-y-6">
             {/* Orange Tab */}
@@ -30,47 +52,37 @@ const WhyChooseUs = () => {
               {
                 icon: "https://cdn-icons-png.flaticon.com/512/3522/3522658.png",
                 title: "Quality That Speaks Volumes",
-                desc: "Our cement delivers strength that lasts and performance you can trust.",
+                desc: "Our cement delivers long-lasting strength and consistent performance every time, for every project.",
               },
               {
                 icon: "https://cdn-icons-png.flaticon.com/512/4776/4776924.png",
                 title: "Price Meets Performance",
-                desc: "Premium strength, smart pricing, because your project deserves the best without the extra cost.",
+                desc: "Premium quality at smart pricing because your project deserves the best, without the extra cost.",
               },
               {
                 icon: "https://cdn-icons-png.flaticon.com/512/10033/10033835.png",
                 title: "Experience That Builds Confidence",
-                desc: "Over 20 years of expertise means we know how to deliver cement that never lets you down.",
+                desc: "With over two decades of expertise, we know how to deliver cement that builders can rely on rain or shine.",
               },
               {
                 icon: "https://cdn-icons-png.flaticon.com/512/2933/2933245.png",
                 title: "Innovation That Powers Progress",
-                desc: "We stay ahead with cutting-edge tech and continuous R&D, ensuring every batch is better than the last.",
+                desc: "Backed by cutting-edge technology and continuous R&D, we ensure every batch is stronger, safer, and more sustainable than the last.",
               },
               {
                 icon: "https://cdn-icons-png.flaticon.com/512/1570/1570887.png",
                 title: "Service That Has Your Back",
-                desc: "From start to finish, our dedicated team is here to support your project hassle-free and always reliable.",
+                desc: "From start to finish, our dedicated team supports your project with hassle-free, always reliable service.",
               },
             ].map((item, idx) => (
-              <div
+              <FeatureCard
                 key={idx}
-                className="flex items-start gap-4 group transition-all duration-300 hover:scale-[1.02] hover:pl-2"
-              >
-                <img
-                  src={item.icon}
-                  alt={item.title}
-                  className="w-6 h-6 mt-1 filter brightness-0 invert transition-transform duration-300 group-hover:scale-110"
-                />
-                <div>
-                  <h3 className="font-bold text-white mb-1 group-hover:text-orange-300 transition-colors duration-300">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm opacity-90 group-hover:opacity-100 transition-opacity duration-300">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
+                icon={item.icon}
+                title={item.title}
+                desc={item.desc}
+                index={idx}
+                inView={featuresInView}
+              />
             ))}
           </div>
 
@@ -90,57 +102,34 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </div>
-
-      {/* Global Styles */}
-      <style jsx global>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes pulse-slow {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.6;
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        .animate-slideUp {
-          animation: slideUp 0.8s ease-out forwards;
-        }
-
-        .animate-pulse-slow {
-          animation: pulse-slow 2.5s infinite;
-        }
-
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-      `}</style>
     </section>
+  );
+};
+
+const FeatureCard = ({ icon, title, desc, index, inView }) => {
+  return (
+    <div
+      className={`flex items-start gap-4 transition-all duration-700 ease-out ${
+        inView
+          ? "opacity-100 translate-x-0"
+          : "opacity-0 -translate-x-5"
+      }`}
+      style={{ transitionDelay: `${index * 100 + 300}ms` }}
+    >
+      <img
+        src={icon}
+        alt={title}
+        className="w-6 h-6 mt-1 filter brightness-0 invert transition-transform duration-300 group-hover:scale-110"
+      />
+      <div>
+        <h3 className="font-bold text-white mb-1 group-hover:text-orange-300 transition-colors duration-300">
+          {title}
+        </h3>
+        <p className="text-sm opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+          {desc}
+        </p>
+      </div>
+    </div>
   );
 };
 

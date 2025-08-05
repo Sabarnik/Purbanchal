@@ -29,7 +29,7 @@ const CSRSection = () => {
   }, [slides.length]);
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center md:items-stretch gap-10">
         
         {/* Carousel */}
@@ -82,11 +82,15 @@ const CSRSection = () => {
               Building Communities, <span className="text-orange-500">Beyond Cement</span>
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Purbanchal Cement builds stronger communities alongside solid structures. Rooted in responsibility and sustainability, we drive education, health, and green initiatives that transform lives.
+              At Purbanchal Cement, we believe our responsibility extends beyond building
+strong structures. Through initiatives in education, health, and environmental
+sustainability, we aim to create lasting positive impact in the communities we
+serve."
             </p>
             <div className="pl-4 border-l-4 border-orange-500 transform hover:scale-[1.01] transition-transform duration-300">
               <p className="text-gray-600 italic">
-                "Empowering people and protecting the planet, we create lasting change. Giving back fuels our purpose."
+                "Empowering people and protecting the planet isn’t just a duty—it’s our promise for
+a better tomorrow"
               </p>
             </div>
             <button 

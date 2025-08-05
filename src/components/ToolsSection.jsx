@@ -20,8 +20,8 @@ const ToolsSection = () => {
           </h2>
           <p className="animate-fadeIn delay-100">
             <span className="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">
-              Calculate costs instantly, locate nearby dealers effortlessly, and get expert guidance,
-              all designed to make your build faster, smarter, and stress-free.
+              Instantly calculate costs, locate trusted dealers near you, and access expert construction
+              guidance all designed to make your project <span class="font-bold">faster, smarter,</span> and  <span class="font-bold">stress-free</span>.
             </span>
           </p>
         </div>
@@ -29,10 +29,12 @@ const ToolsSection = () => {
           {[
             {
               title: "Cost Calculator",
-              desc: "Get your project's cost in clicks, not guesswork",
+              desc: "Get your project's cost in clicks, not guesswork. Input your location and construction area to receive an estimated cost instantly",
               img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1470&q=80",
               icon: (
-                <path d="M17 8h-2V6a5 5 0 00-10 0v2H3a1 1 0 000 2h1v7a2 2 0 002 2h8a2 2 0 002-2v-7h1a1 1 0 100-2zM7 6a3 3 0 116 0v2H7V6z" />
+                <>
+                  <path d="M7 2a1 1 0 000 2h6a1 1 0 100-2H7zM4 9a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 15a1 1 0 011-1h12a1 1 0 110 2H3a1 1 0 01-1-1z" />
+                </>
               ),
               inputs: [
                 { type: "select", placeholder: "Select State", options: ["Assam", "West Bengal", "Bihar"] },
@@ -40,13 +42,16 @@ const ToolsSection = () => {
                 { type: "input", placeholder: "Area in sq.feet" },
               ],
               buttonText: "Calculate Now",
+              timeBadge: "Takes 30 seconds"
             },
             {
               title: "Dealer Locator",
-              desc: "Find trusted Purbanchal Cement dealers near you in seconds.",
+              desc: "Find verified Purbanchal Cement dealers near you in seconds. Search by city or pin code to get contact details and directions.",
               img: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1470&q=80",
               icon: (
-                <path d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" />
+                <>
+                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                </>
               ),
               inputs: [
                 { type: "select", placeholder: "Select State", options: ["Assam", "West Bengal", "Bihar"] },
@@ -54,32 +59,42 @@ const ToolsSection = () => {
                 { type: "input", placeholder: "Pincode" },
               ],
               buttonText: "Find Dealers",
+              timeBadge: "Takes 45 seconds"
             },
             {
               title: "Construction Guide",
-              desc: "Plan right, build better with clear and easy guidance.",
+              desc: "Plan right, build better.",
               img: "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1470&q=80",
               icon: (
-                <path d="M4 3a2 2 0 00-2 2v12a1 1 0 001.447.894L10 15.118l6.553 2.776A1 1 0 0018 17V5a2 2 0 00-2-2H4z" />
+                <>
+                  <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                </>
               ),
               isGuide: true,
               buttonText: "Explore Guide",
+              timeBadge: "Quick tips"
             },
           ].map((tool, idx) => (
             <div
               key={idx}
-              className={`relative bg-white rounded-3xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col group ${
+              className={`relative bg-white rounded-3xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col h-full group ${
                 activeTool === idx ? "ring-2 ring-orange-500" : ""
               }`}
               onMouseEnter={() => setActiveTool(idx)}
               onMouseLeave={() => setActiveTool(null)}
             >
-              {/* Top Image Section - 45% of card */}
+              {/* Top Image Section */}
               <div
                 className="relative h-[180px] bg-cover bg-center"
                 style={{ backgroundImage: `url('${tool.img}')` }}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-black/20 group-hover:from-black/50 group-hover:to-black/30 transition-all duration-500"></div>
+                
+                {/* Time Badge */}
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-orange-600 shadow-sm">
+                  {tool.timeBadge}
+                </div>
+                
                 {/* Floating Icon */}
                 <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white rounded-full border-4 border-white p-4 shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl z-10">
                   <div className="bg-gradient-to-br from-blue-700 to-blue-900 rounded-full p-3">
@@ -95,8 +110,8 @@ const ToolsSection = () => {
               </div>
 
               {/* Card Content */}
-              <div className="pt-12 pb-6 px-6 flex flex-col justify-between h-full">
-                <div>
+              <div className="pt-12 pb-6 px-6 flex flex-col flex-grow">
+                <div className="flex-grow">
                   <h3 className="text-xl font-bold text-center mb-2 text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
                     {tool.title}
                   </h3>
@@ -132,13 +147,13 @@ const ToolsSection = () => {
                   </div>
                 ) : (
                   <div className="bg-gray-50 p-4 rounded-lg text-sm text-gray-600 leading-relaxed mb-6 group-hover:bg-gray-100 transition-colors duration-300 animate-fadeInUp">
-                    A step-by-step guide to help builders plan, choose materials, & manage every stage of construction
-                    with confidence.
+                    A step-by-step guide to help you choose the right materials, manage timelines, and
+                    confidently execute every construction phase.
                   </div>
                 )}
 
                 <button
-                  className={`mt-auto w-full ${
+                  className={`w-full ${
                     tool.isGuide
                       ? "flex items-center justify-center gap-2 text-orange-500 hover:text-orange-600"
                       : "bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-3"

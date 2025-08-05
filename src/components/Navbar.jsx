@@ -81,13 +81,13 @@ const Navbar = () => {
       ],
     },
     {
-      href: "#product",
-      label: "Product",
+      href: "#products",
+      label: "Products",
       hasDropdown: true,
       dropdownItems: [
-        { href: "#product-overview", label: "Product Overview" },
-        { href: "#product-features", label: "Features" },
-        { href: "#product-specs", label: "Specifications" },
+        { href: "#surya-gold-cement", label: "Surya Gold Cement" },
+        { href: "#surya-concreto", label: "Surya Concreto" },
+        { href: "#product-comparison", label: "Product Comparison" },
       ],
     },
     {

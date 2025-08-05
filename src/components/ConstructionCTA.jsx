@@ -20,12 +20,13 @@ const ConstructionCTA = () => {
           <div className="w-full md:w-1/2 bg-[#3366BB] text-white flex items-center p-6 sm:p-8">
             <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-bold leading-tight">
-                Ready to cement your future with us?
+                Let’s Build Your Next Landmark Together
               </h2>
               <p className="text-white/90 leading-relaxed">
-                No more delays—your next construction milestone starts here.
+                No delays. No compromises. 
                 <br />
-                Get clarity, confidence, and a quick quote to move forward with ease.
+               With Purbanchal Cement, your construction milestones
+are achieved with unmatched quality and speed.
               </p>
               <div className="pt-2">
                 <a 

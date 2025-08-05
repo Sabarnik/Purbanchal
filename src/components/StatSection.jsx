@@ -51,40 +51,40 @@ const StatsSection = () => {
 
   const stats = [
     {
-      value: 25,
+      value: 17,
       suffix: "+",
       label: "Years of Excellence",
-      description: "Industry leadership since 1998",
+      description: "Delivering strength & reliability since 1998",
     },
     {
       value: 5000,
       suffix: "+",
       label: "Clients Served",
-      description: "Trusted partnerships worldwide",
+      description: "Long-standing partnerships across industries",
     },
     {
-      value: 850,
+      value: 1000,
       suffix: "+",
       label: "Projects Completed",
-      description: "Successful deliveries",
+      description: "Timely & successful deliveries across sectors",
     },
     {
       value: 100,
       suffix: "%",
       label: "Quality Assurance",
-      description: "Guaranteed performance",
+      description: "Uncompromising commitment to performance",
     },
     {
-      value: 350,
+      value: 500,
       suffix: "+",
-      label: "Employees",
-      description: "Dedicated professionals",
+      label: "Professionals",
+      description: "Skilled professionals powering our growth",
     },
     {
-      value: 15,
+      value: 1000,
       suffix: "+",
-      label: "Countries",
-      description: "Global presence",
+      label: "Dealers",
+      description: "Our Network",
     },
   ];
 
@@ -99,7 +99,7 @@ const StatsSection = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-sm font-semibold text-[#3366BB] mb-2"
           >
-            OUR TRACK RECORD
+          MAITHAN LEGACIES
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -118,8 +118,8 @@ const StatsSection = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-gray-600 text-lg mb-6"
           >
-            With decades of experience and a commitment to excellence, we've
-            established ourselves as industry leaders in quality and innovation.
+           With over two decades of industry experience, we have consistently delivered value, quality,
+and innovation to our clients across the globe.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -127,8 +127,8 @@ const StatsSection = () => {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="text-gray-600 text-lg"
           >
-            Our numbers tell the story of our dedication to delivering superior
-            products and services to clients across the globe.
+            Our numbers speak for themselves reflecting the trust we’ve earned and the impact we have
+made in the construction ecosystem
           </motion.p>
         </div>
 

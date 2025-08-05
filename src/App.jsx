@@ -12,7 +12,6 @@ import Testimonials from "./components/TestimonialsSection";
 import StrengthLineup from "./components/StrengthLineup";
 import BlogNewsSection from "./components/BlogNewsSection";
 import Footer from "./components/Footer";
-import LegacySection from "./components/LegacySection";
 import ProjectSection from "./components/ProjectSection"; // Import the new ProjectSection component
 import ConstructionCTA from "./components/ConstructionCTA"; // Import the new component 
 import CSRSection from "./components/CSR";
@@ -39,7 +38,6 @@ function App() {
         <CSRSection />
         <BlogNewsSection />
         <ConstructionCTA /> 
-        <LegacySection />
         {/* <div className="h-20"></div> */}
         <Footer />
       </div>

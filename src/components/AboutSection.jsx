@@ -90,12 +90,20 @@ const AboutSection = () => {
               </p>
               
               <p className="text-gray-500 text-lg leading-relaxed">
-                 Founded in 2008, Purbanchal Cement Ltd.
-                 (a Maithan Group company) operates a fully integrated cement plant in Sonapur, Assam. 
-                 Under our flagship brands – Surya Gold Cement and Surya Concretec – we produce BIS-standard PPC, OPC,
-                  and premium grade Concretec Cement. With ISO‎ 9001:2008 and 14001:2004 certifications, we stand 
-                  for quality, consistency, and sustainability. Our commitment: Fresh cement, reliable service, and a promise 
-                  to strengthen every structure in Northeast India.
+               <span class="font-bold">Founded in 2008</span>, Purbanchal Cement Ltd. (a Maithan Group company) operates a fully
+integrated cement manufacturing facility in Sonapur, Assam.
+              </p>
+               <p className="text-gray-500 text-lg leading-relaxed">
+Under our trusted brands <span class="font-bold">Surya Gold Cement</span> and <span class="font-bold">Surya Concreto</span> we produce BIS-standard
+<span class="font-bold"> PPC, OPC,</span> and premium-grade <span class="font-bold">Concrete Cement</span>, catering to diverse construction needs.
+              </p>
+               <p className="text-gray-500 text-lg leading-relaxed">
+Backed by ISO <span class="font-bold">9001:2008</span> and <span class="font-bold">ISO 14001:2004</span> certifications, we take pride in delivering
+products that ensure <span class="font-bold">quality, consistency,</span> and <span class="font-bold">sustainability</span>.
+              </p>
+               <p className="text-gray-500 text-lg leading-relaxed">
+Our commitment lies in offering <span class="font-bold">fresh cement, timely service,</span> and a promise to reinforce
+every structure in <span class="font-bold">Northeast India and beyond</span>.
               </p>
             </motion.div>
             
@@ -108,7 +116,7 @@ const AboutSection = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Discover Me
+                Discover Our Legacy
               </motion.button>
             </motion.div>
           </div>
@@ -142,6 +150,12 @@ const AboutSection = () => {
                 />
               </motion.div>
             </div>
+            <motion.p 
+              className="text-center mt-4 text-gray-600 italic"
+              variants={itemVariants}
+            >
+              Our Integrated Manufacturing Unit, Sonapur, Assam
+            </motion.p>
           </motion.div>
         </motion.div>
       </div>

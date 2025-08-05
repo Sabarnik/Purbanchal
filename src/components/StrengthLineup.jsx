@@ -5,6 +5,7 @@ const StrengthLineup = () => {
   const logoRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isSmallMobile, setIsSmallMobile] = useState(false);
+  const [activeInfoBox, setActiveInfoBox] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,6 +48,11 @@ const StrengthLineup = () => {
       if (logoRef.current) observer.unobserve(logoRef.current);
     };
   }, []);
+
+  const handleClick = (index) => {
+    if (!isMobile) return;
+    setActiveInfoBox(activeInfoBox === index ? null : index);
+  };
 
   const containerStyle = {
     position: 'relative',
@@ -130,7 +136,11 @@ const StrengthLineup = () => {
     transition: 'transform 0.3s ease',
     cursor: 'pointer',
     transform: `scale(${scale})`,
-    transformOrigin: 'bottom center'
+    transformOrigin: 'bottom center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    position: 'relative'
   });
 
   const imageStyle = {
@@ -140,16 +150,63 @@ const StrengthLineup = () => {
     display: 'block'
   };
 
-  const handleMouseEnter = (e) => {
-    if (isMobile) return; // Disable hover effects on mobile
-    const scale = parseFloat(e.currentTarget.dataset.scale || '1') * 1.05;
-    e.currentTarget.style.transform = `translateY(-10px) scale(${scale})`;
+  const productInfoStyle = (index) => ({
+    position: isMobile ? 'static' : 'absolute',
+    bottom: isMobile ? 'auto' : '-10px',
+    left: '50%',
+    transform: isMobile ? 'none' : 'translateX(-50%)',
+    width: isSmallMobile ? '120px' : isMobile ? '150px' : '200px',
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    padding: '10px',
+    borderRadius: '5px',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+    textAlign: 'center',
+    opacity: isMobile ? (activeInfoBox === index ? 1 : 0) : 0,
+    transition: 'all 0.3s ease',
+    pointerEvents: 'none',
+    zIndex: 3,
+    marginTop: isMobile ? '10px' : 0,
+    maxHeight: isMobile ? (activeInfoBox === index ? '500px' : '0') : 'auto',
+    overflow: 'hidden'
+  });
+
+  const productTitleStyle = {
+    fontSize: isSmallMobile ? '0.8rem' : '0.9rem',
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: '5px'
   };
 
-  const handleMouseLeave = (e) => {
-    if (isMobile) return; // Disable hover effects on mobile
+  const productDescStyle = {
+    fontSize: isSmallMobile ? '0.65rem' : '0.75rem',
+    color: '#333',
+    lineHeight: '1.3'
+  };
+
+  const handleMouseEnter = (e, index) => {
+    if (isMobile) return;
+    const scale = parseFloat(e.currentTarget.dataset.scale || '1') * 1.05;
+    e.currentTarget.style.transform = `translateY(-10px) scale(${scale})`;
+    
+    // Show info box
+    const infoBox = e.currentTarget.querySelector('.product-info');
+    if (infoBox) {
+      infoBox.style.opacity = '1';
+      infoBox.style.bottom = '0px';
+    }
+  };
+
+  const handleMouseLeave = (e, index) => {
+    if (isMobile) return;
     const scale = e.currentTarget.dataset.scale || '1';
     e.currentTarget.style.transform = `scale(${scale})`;
+    
+    // Hide info box
+    const infoBox = e.currentTarget.querySelector('.product-info');
+    if (infoBox) {
+      infoBox.style.opacity = '0';
+      infoBox.style.bottom = '-10px';
+    }
   };
 
   return (
@@ -163,9 +220,9 @@ const StrengthLineup = () => {
             overflow: 'hidden'
           }}
         >
-          <span style={lineStyle} />
-          <h1 style={titleStyle}>The Strength Lineup</h1>
-          <span style={lineStyle} />
+      <span className="inline-block hover:-translate-x-1 text-3xl transition-transform duration-300">←</span>{" "}        
+          <h1 style={titleStyle}>Our Strength</h1>
+        <span className="inline-block hover:translate-x-1 text-3xl transition-transform duration-300">→</span>
         </div>
         <p style={subtitleStyle}>Versatile strength for every build you envision</p>
       </div>
@@ -181,8 +238,9 @@ const StrengthLineup = () => {
       <div style={bagsContainerStyle}>
         <div
           style={bagStyle(isMobile ? 130 : 190, isMobile ? 170 : 260, 0)}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={(e) => handleMouseEnter(e, 0)}
+          onMouseLeave={(e) => handleMouseLeave(e, 0)}
+          onClick={() => handleClick(0)}
         >
           <img
             src={`${__IMAGE_BASE_PATH__}/left.png`}
@@ -190,11 +248,19 @@ const StrengthLineup = () => {
             style={imageStyle}
             loading="lazy"
           />
+          <div className="product-info" style={productInfoStyle(0)}>
+            <div style={productTitleStyle}>Surya Concretec Cement</div>
+            <div style={productDescStyle}>
+              Super Dhalai PPC cement engineered for superior slab casting and long-term durability.
+              BIS Certified | 50 kg | Best for roofs and foundations
+            </div>
+          </div>
         </div>
         <div
           style={bagStyle(isMobile ? 160 : 230, isMobile ? 210 : 310, isMobile ? 0 : -30)}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={(e) => handleMouseEnter(e, 1)}
+          onMouseLeave={(e) => handleMouseLeave(e, 1)}
+          onClick={() => handleClick(1)}
         >
           <img
             src={`${__IMAGE_BASE_PATH__}/middle.png`}
@@ -202,12 +268,20 @@ const StrengthLineup = () => {
             style={imageStyle}
             loading="lazy"
           />
+          <div className="product-info" style={productInfoStyle(1)}>
+            <div style={productTitleStyle}>Surya Gold PPC Cement</div>
+            <div style={productDescStyle}>
+              High-performance Portland Pozzolana Cement ideal for all weather construction.
+              Smooth finish | Water-resistant | BIS Compliant
+            </div>
+          </div>
         </div>
         <div
           style={bagStyle(isMobile ? 150 : 220, isMobile ? 190 : 300, isMobile ? 0 : -10, 1.1)}
           data-scale="1.1"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={(e) => handleMouseEnter(e, 2)}
+          onMouseLeave={(e) => handleMouseLeave(e, 2)}
+          onClick={() => handleClick(2)}
         >
           <img
             src={`${__IMAGE_BASE_PATH__}/right.png`}
@@ -215,6 +289,13 @@ const StrengthLineup = () => {
             style={imageStyle}
             loading="lazy"
           />
+          <div className="product-info" style={productInfoStyle(2)}>
+            <div style={productTitleStyle}>Surya Gold OPC Cement</div>
+            <div style={productDescStyle}>
+              Ordinary Portland Cement (Grade 53) for fast-setting and strong structures.
+              Ideal for RCC work | High strength | Rapid development
+            </div>
+          </div>
         </div>
       </div>
     </div>
