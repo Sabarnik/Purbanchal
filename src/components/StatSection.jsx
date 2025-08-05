@@ -118,8 +118,8 @@ const StatsSection = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-gray-600 text-lg mb-6"
           >
-           With over two decades of industry experience, we have consistently delivered value, quality,
-and innovation to our clients across the globe.
+Purbanchal Cement is a proud part of the Maithan Group, a trusted name and market leader in steel, specialty alumina, refractory, and ferro alloys. Backed by decades of industrial excellence, Maithan Group has built a formidable presence across core sectors that power India’s infrastructure and manufacturing.
+
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -127,8 +127,7 @@ and innovation to our clients across the globe.
             transition={{ duration: 0.5, delay: 0.5 }}
             className="text-gray-600 text-lg"
           >
-            Our numbers speak for themselves reflecting the trust we’ve earned and the impact we have
-made in the construction ecosystem
+Carrying this legacy forward, Purbanachal cement limited though its brands Surya Gold & Surya concretec is committed to delivering high-quality cement products through advanced manufacturing, sustainable practices, and a relentless focus on customer satisfaction.
           </motion.p>
         </div>
 
